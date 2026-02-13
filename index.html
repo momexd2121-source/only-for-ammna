@@ -508,7 +508,7 @@
                     <source src="resources/heart.webm" type="video/webm">
                 </video>
             </div>
-            <audio id="bg-audio" loop>
+            <audio id="bg-audio" loop preload="auto">
                 <!-- المسار الصحيح مع é -->
                 <source src="resources/Michael Bublé - Sway (Official Lyric Video)(MP3_320K).mp3" type="audio/mpeg">
             </audio>
@@ -548,7 +548,7 @@
             }
         }
 
-        // إظهار الصفحة الرئيسية
+        // إظهار الصفحة الرئيسية وتشغيل الموسيقى
         function showMainPage(choice) {
             const welcomePage = document.getElementById('welcome-page');
             const mainPage = document.getElementById('main-page');
@@ -567,9 +567,25 @@
             setTimeout(() => {
                 mainPage.classList.add('visible');
                 
-                // محاولة تشغيل الموسيقى
+                // ✅ تشغيل الموسيقى هنا بعد تفاعل المستخدم
                 const audio = document.getElementById('bg-audio');
-                audio.play().catch(e => console.log('Audio play failed:', e));
+                audio.volume = 0.5; // خفض الصوت قليلاً
+                
+                // محاولة تشغيل الموسيقى
+                let playPromise = audio.play();
+                
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        console.log('🎵 Music started successfully!');
+                    }).catch(error => {
+                        console.log('Audio play failed:', error);
+                        // إذا فشل التشغيل، نحاول مرة أخرى عند النقر في أي مكان
+                        document.body.addEventListener('click', function playOnClick() {
+                            audio.play();
+                            document.body.removeEventListener('click', playOnClick);
+                        }, { once: true });
+                    });
+                }
                 
                 // إظهار رسالة حسب الاختيار
                 if (choice === 'yes-but-red') {
