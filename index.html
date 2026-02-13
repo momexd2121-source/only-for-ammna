@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="resources/fav.png">
     <title>Only for Ammna ❤️</title>
-    <!-- Google Fonts -->
+   
     <link href="https://fonts.googleapis.com/css2?family=Allura&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome -->
+   
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -24,7 +24,7 @@
             position: relative;
         }
 
-        /* القلوب المتحركة في الخلفية */
+        
         .floating-hearts {
             position: fixed;
             width: 100%;
@@ -57,7 +57,7 @@
             }
         }
 
-        /* تنويع القلوب */
+       
         .heart:nth-child(1) { left: 2%; font-size: 2.2rem; animation-duration: 9s; animation-delay: 0s; }
         .heart:nth-child(2) { left: 8%; font-size: 1.8rem; animation-duration: 11s; animation-delay: 2s; }
         .heart:nth-child(3) { left: 15%; font-size: 2.5rem; animation-duration: 8s; animation-delay: 1s; }
@@ -74,7 +74,7 @@
         .heart:nth-child(14) { left: 95%; font-size: 1.9rem; animation-duration: 10.2s; animation-delay: 4.5s; }
         .heart:nth-child(15) { left: 98%; font-size: 2.1rem; animation-duration: 7.5s; animation-delay: 3.8s; }
 
-        /* صفحة الترحيب */
+   
         #welcome-page {
             position: fixed;
             top: 0;
@@ -233,7 +233,7 @@
             75% { transform: scale(1.2); }
         }
 
-        /* الصفحة الرئيسية (موقعك الأصلي) */
+       
         #main-page {
             position: fixed;
             top: 0;
@@ -253,7 +253,7 @@
             pointer-events: all;
         }
 
-        /* تنسيقات موقعك الأصلي */
+       
         section {
             position: relative;
             height: 100%;
@@ -396,7 +396,7 @@
             color: white;
         }
 
-        /* Responsive */
+       
         @media (max-width: 1025px) {
             .container {
                 width: 98%;
@@ -440,7 +440,7 @@
             }
         }
 
-        /* كونفيتي مخصص */
+     
         .confetti {
             position: fixed;
             width: 10px;
@@ -462,7 +462,7 @@
     </style>
 </head>
 <body>
-    <!-- القلوب المتحركة في الخلفية (ثابتة في كل الصفحات) -->
+    
     <div class="floating-hearts">
         <div class="heart">❤️</div>
         <div class="heart">❤️</div>
@@ -481,7 +481,7 @@
         <div class="heart">❤️</div>
     </div>
 
-    <!-- صفحة الترحيب -->
+ 
     <div id="welcome-page">
         <div class="welcome-container">
             <h1>Hello MY AMY</h1>
@@ -500,7 +500,7 @@
         </div>
     </div>
 
-    <!-- الصفحة الرئيسية (موقعك الأصلي) -->
+  
     <div id="main-page">
         <section>
             <div class="video-background">
@@ -509,7 +509,7 @@
                 </video>
             </div>
             <audio id="bg-audio" loop preload="auto">
-                <!-- المسار الصحيح مع é -->
+            
                 <source src="resources/Michael Bublé - Sway (Official Lyric Video)(MP3_320K).mp3" type="audio/mpeg">
             </audio>
             <div class="container">
@@ -530,7 +530,7 @@
     </div>
 
     <script>
-        // إنشاء كونفيتي مخصص
+        
         function createConfetti(color) {
             for (let i = 0; i < 50; i++) {
                 setTimeout(() => {
@@ -548,30 +548,26 @@
             }
         }
 
-        // إظهار الصفحة الرئيسية وتشغيل الموسيقى
+       
         function showMainPage(choice) {
             const welcomePage = document.getElementById('welcome-page');
             const mainPage = document.getElementById('main-page');
             
-            // إنشاء كونفيتي حسب الاختيار
+         
             if (choice === 'yes') {
                 createConfetti('#4caf50');
             } else {
                 createConfetti('#f44336');
             }
             
-            // إخفاء صفحة الترحيب
             welcomePage.classList.add('hidden');
             
-            // إظهار الصفحة الرئيسية بعد ثانية
             setTimeout(() => {
                 mainPage.classList.add('visible');
                 
-                // ✅ تشغيل الموسيقى هنا بعد تفاعل المستخدم
                 const audio = document.getElementById('bg-audio');
-                audio.volume = 0.5; // خفض الصوت قليلاً
+                audio.volume = 0.5; 
                 
-                // محاولة تشغيل الموسيقى
                 let playPromise = audio.play();
                 
                 if (playPromise !== undefined) {
@@ -579,7 +575,6 @@
                         console.log('🎵 Music started successfully!');
                     }).catch(error => {
                         console.log('Audio play failed:', error);
-                        // إذا فشل التشغيل، نحاول مرة أخرى عند النقر في أي مكان
                         document.body.addEventListener('click', function playOnClick() {
                             audio.play();
                             document.body.removeEventListener('click', playOnClick);
@@ -587,7 +582,6 @@
                     });
                 }
                 
-                // إظهار رسالة حسب الاختيار
                 if (choice === 'yes-but-red') {
                     alert('❤️ You chose red! That means a lot! ❤️');
                 } else {
@@ -596,7 +590,6 @@
             }, 1000);
         }
 
-        // كود موقعك الأصلي
         const yes = document.querySelector("#yes");
         const no = document.querySelector("#no");
         const gif = document.querySelector("#gif");
@@ -613,13 +606,11 @@
             "resources/kiss.gif"
         ];
 
-        // تحميل مسبق للصور
         gifs.forEach(gifSrc => {
             const img = new Image();
             img.src = gifSrc;
         });
 
-        // زر No
         no.addEventListener("click", () => {
             if (count == 2) {
                 gif.src = "resources/freak2.gif";
@@ -652,12 +643,10 @@
                 count++;
             }
             
-            // إضافة تأثير عند الضغط على No
             no.style.transform = "scale(0.95)";
             setTimeout(() => no.style.transform = "scale(1)", 200);
         });
 
-        // زر Yes
         yes.addEventListener("click", () => {
             vid.style.display = "block";
             gif.src = "resources/kiss.gif";
@@ -667,20 +656,16 @@
             yes.style.width = "96%";
             no.style.display = "none";
             
-            // إضافة تأثير عند الضغط على Yes
             yes.style.transform = "scale(0.95)";
             setTimeout(() => yes.style.transform = "scale(1)", 200);
             
-            // إخفاء الفيديو بعد 9 ثواني
             setTimeout(() => {
                 vid.style.display = "none";
             }, 9000);
             
-            // كونفيتي احتفالي
             createConfetti('#ffd700');
         });
 
-        // منع انتقال الصفحة عند النقر على الروابط
         document.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -688,9 +673,9 @@
             });
         });
 
-        // إضافة تأثيرات حركية للخلفية
         console.log('❤️ Happy Valentine\'s Day Amy! ❤️');
     </script>
 </body>
 </html>
+
 
